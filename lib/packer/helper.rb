@@ -6,7 +6,8 @@ module Packer
       Packer.manifest.lookup!(name)
     end
 
-    alias image_path asset_pack_path
+    # TODO: Later
+    # alias image_path asset_pack_path
 
     def javascript_pack_tag(*names, **_options)
       sources_from_pack_manifest(names).map do |name|
