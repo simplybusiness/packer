@@ -16,13 +16,17 @@ module Packer
   end
 
   delegate :logger, :logger=, :env, to: :instance
-  delegate :compile, :compiler, :manifest, :config, :dev_server, to: :instance
+  delegate :compile, :compiler, :manifest, :commands, :config, :dev_server, to: :instance
+  delegate :bootstrap, :clobber, :compile, to: :commands
 end
 
 require 'packer/version'
+require 'packer/commands'
 require 'packer/compiler'
 require 'packer/configuration'
 require 'packer/helper'
 require 'packer/instance'
 require 'packer/manifest'
 require 'packer/dev_server'
+
+require 'packer/railtie' if defined?(Rails)

@@ -12,6 +12,10 @@ module Packer
       @packer = packer
     end
 
+    def refresh
+      @data = load
+    end
+
     def compile?
       fetch(:compile)
     end

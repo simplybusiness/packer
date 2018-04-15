@@ -16,7 +16,7 @@ module Packer
     end
 
     def env
-      @env ||= ENV['RACK_ENV'] || 'production'
+      @env ||= ENV['RACK_ENV'] || 'development'
     end
 
     def compiler
@@ -33,6 +33,10 @@ module Packer
 
     def dev_server
       @dev_server ||= Packer::DevServer.new self
+    end
+
+    def commands
+      @commands ||= Packer::Commands.new self
     end
   end
 end
