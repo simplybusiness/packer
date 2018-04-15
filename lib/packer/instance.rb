@@ -16,7 +16,7 @@ module Packer
     end
 
     def env
-      @env ||= ENV['RACK_ENV'] || 'development'
+      @env ||= ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
     end
 
     def compiler
