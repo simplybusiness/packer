@@ -10,15 +10,19 @@ module Packer
     # alias image_path asset_pack_path
 
     def javascript_pack_tag(*names, **_options)
-      sources_from_pack_manifest(names).map do |name|
+      tags = sources_from_pack_manifest(names).map do |name|
         "<script src=\"#{name}\"></script>"
       end.join("\n")
+      
+      tags.respond_to?(:html_safe) ? tags.html_safe : tags
     end
 
     def stylesheet_pack_tag(*names, **_options)
-      sources_from_pack_manifest(names).map do |name|
+      tags = sources_from_pack_manifest(names).map do |name|
         "<link rel=\"stylesheet\" href=\"#{name}\">"
       end.join("\n")
+      
+      tags.respond_to?(:html_safe) ? tags.html_safe : tags
     end
 
     private
