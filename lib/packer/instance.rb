@@ -10,13 +10,13 @@ module Packer
 
     delegate :compile, to: :compiler
 
-    def initialize(root_path: Pathname('.'), config_path: Pathname('config/packer.yml'))
-      @root_path = root_path
-      @config_path = config_path
+    def initialize(root_path: nil, config_path: nil)
+      @root_path = root_path || app_root_path
+      @config_path = config_path || File.join(@root_path, 'config/packer.yml')
     end
 
     def env
-      @env ||= ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
+      @env ||= Packer::Env.inquire self
     end
 
     def compiler
@@ -37,6 +37,18 @@ module Packer
 
     def commands
       @commands ||= Packer::Commands.new self
+    end
+
+    private
+
+    def app_root_path
+      if Packer.rails?
+        Rails.root
+      elsif Packer.sinatra?
+        Sinatra::Base.settings.root || Pathname('.')
+      else
+        raise 'Packer is running in unsupported environment'
+      end
     end
   end
 end

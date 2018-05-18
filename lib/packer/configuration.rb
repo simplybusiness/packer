@@ -68,7 +68,7 @@ module Packer
 
     def load
       # rubocop:disable Security/YAMLLoad
-      YAML.load(config_path.read)[env].deep_symbolize_keys
+      YAML.load_file(config_path)[env].deep_symbolize_keys
       # rubocop:enable Security/YAMLLoad
     rescue Errno::ENOENT => e
       raise "Webpacker configuration file not found #{config_path}. " \
