@@ -9,8 +9,6 @@ module Packer
     def self.registered(app)
       app.helpers Packer::Helper
       app.use Packer::DevServerProxy if ENV['RACK_ENV'] == 'development'
-
-      Packer.instance = Packer::Instance.new(root_path:, config_path:)
     end
   end
 end
