@@ -1,5 +1,5 @@
 const path = require('path')
-const { readFileSync } = require('fs')
+const fs = require('fs')
 const yaml = require('js-yaml')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
@@ -9,7 +9,7 @@ if (!configPath) {
   console.warn('PACKER_CONFIG path not set, defaulting to config/packer.yml')
   configPath = path.resolve('config', 'packer.yml')
 }
-let config = yaml.safeLoad(readFileSync(configPath))[environment]
+let config = yaml.safeLoad(fs.readFileSync(configPath))[environment]
 
 module.exports = {
   context: path.join(__dirname, config.source_path),
