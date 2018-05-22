@@ -71,7 +71,7 @@ module Packer
       YAML.load_file(config_path)[env].deep_symbolize_keys
       # rubocop:enable Security/YAMLLoad
     rescue Errno::ENOENT => e
-      raise "Webpacker configuration file not found #{config_path}. " \
+      raise "Packer configuration file not found #{config_path}. " \
             "Error: #{e.message}"
     rescue Psych::SyntaxError => e
       raise "YAML syntax error occurred while parsing #{config_path}. " \
