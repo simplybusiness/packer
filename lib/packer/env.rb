@@ -35,11 +35,11 @@ module Packer
     end
 
     def sinatra_env
-      Sinatra::Base.environment if Packer.sinatra?
+      ::Sinatra::Base.environment if Packer.sinatra?
     end
 
     def rails_env
-      Rails.env if Packer.rails?
+      ::Rails.env if Packer.rails?
     end
 
     def available_environments

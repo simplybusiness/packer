@@ -16,11 +16,11 @@ module Packer
   end
 
   def rails?
-    defined? Rails
+    defined? ::Rails
   end
 
   def sinatra?
-    defined? Sinatra
+    defined? ::Sinatra
   end
 
   delegate :logger, :logger=, :env, to: :instance
