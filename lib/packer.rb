@@ -28,6 +28,7 @@ module Packer
   delegate :bootstrap, :clobber, :compile, to: :commands
 end
 
+require 'packer/version'
 require 'packer/env'
 require 'packer/commands'
 require 'packer/compiler'
