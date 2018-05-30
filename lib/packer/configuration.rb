@@ -67,9 +67,7 @@ module Packer
     end
 
     def load
-      # rubocop:disable Security/YAMLLoad
       YAML.load_file(config_path)[env].deep_symbolize_keys
-      # rubocop:enable Security/YAMLLoad
     rescue Errno::ENOENT => e
       raise "Packer configuration file not found #{config_path}. " \
             "Error: #{e.message}"
