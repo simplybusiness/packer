@@ -14,7 +14,9 @@ module Packer
     def compile
       if stale?
         record_compilation_digest
-        run_webpack
+        run_webpack.tap do |success|
+          remove_compilation_digest if !success
+        end
       else
         true
       end
@@ -44,6 +46,11 @@ module Packer
     def record_compilation_digest
       config.cache_path.mkpath
       compilation_digest_path.write(watched_files_digest)
+    end
+
+    def remove_compilation_digest
+      compilation_digest_path.delete if compilation_digest_path.exist?
+    rescue Errno::ENOENT, Errno::ENOTDIR
     end
 
     # rubocop:disable Metrics/AbcSize
