@@ -12,7 +12,7 @@ module Packer
 
     def initialize(root_path: nil, config_path: nil)
       @root_path = root_path || app_root_path
-      @config_path = config_path || File.join(@root_path, 'config/packer.yml')
+      @config_path = config_path || Pathname.new(File.join(@root_path, 'config/packer.yml'))
     end
 
     def env
