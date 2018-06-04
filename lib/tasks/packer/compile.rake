@@ -19,12 +19,7 @@ namespace :packer do
   task compile: ["packer:verify_install", :environment] do
     Packer.with_node_env("production") do
       ensure_log_goes_to_stdout do
-        if Packer.compile
-          # Successful compilation!
-        else
-          # Failed compilation
-          exit!
-        end
+        exit! unless Packer.compile
       end
     end
   end

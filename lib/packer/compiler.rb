@@ -15,7 +15,7 @@ module Packer
       if stale?
         record_compilation_digest
         run_webpack.tap do |success|
-          remove_compilation_digest if !success
+          remove_compilation_digest unless success
         end
       else
         true
