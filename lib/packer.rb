@@ -37,7 +37,6 @@ module Packer
 end
 
 require 'packer/version'
-require 'packer/env'
 require 'packer/commands'
 require 'packer/compiler'
 require 'packer/configuration'
