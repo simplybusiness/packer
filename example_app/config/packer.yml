@@ -20,5 +20,6 @@ test:
 
 production:
   <<: *default
+  mode: production
   compile: false
   cache_manifest: true
