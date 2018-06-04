@@ -11,7 +11,7 @@ module Packer
     delegate :compile, to: :compiler
 
     def initialize(root_path: nil, config_path: nil)
-      @root_path = root_path || app_root_path
+      @root_path = Pathname.new(root_path) || app_root_path
       @config_path = config_path || Pathname.new(File.join(@root_path, 'config/packer.yml'))
     end
 
@@ -44,10 +44,8 @@ module Packer
     def app_root_path
       if Packer.rails?
         Rails.root
-      elsif Packer.sinatra?
-        Sinatra::Base.settings.root || Pathname('.')
       else
-        raise 'Packer is running in unsupported environment'
+        raise ArgumentError, "@root_path is not set"
       end
     end
   end
