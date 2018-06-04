@@ -11,7 +11,7 @@ module Packer
     delegate :compile, to: :compiler
 
     def initialize(root_path: nil, config_path: nil)
-      @root_path = Pathname.new(root_path) || app_root_path
+      @root_path = determine_root_path(root_path)
       @config_path = config_path || Pathname.new(File.join(@root_path, 'config/packer.yml'))
     end
 
@@ -41,11 +41,13 @@ module Packer
 
     private
 
-    def app_root_path
-      if Packer.rails?
+    def determine_root_path(root_path)
+      if root_path.present?
+        Pathname.new(root_path)
+      elsif Packer.rails?
         Rails.root
       else
-        raise ArgumentError, "@root_path is not set"
+        raise ArgumentError, "root_path is not set"
       end
     end
   end
