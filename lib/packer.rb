@@ -15,12 +15,21 @@ module Packer
     @instance ||= Packer::Instance.new
   end
 
+  def rails?
+    defined? ::Rails
+  end
+
+  def sinatra?
+    defined? ::Sinatra
+  end
+
   delegate :logger, :logger=, :env, to: :instance
   delegate :compile, :compiler, :manifest, :commands, :config, :dev_server, to: :instance
   delegate :bootstrap, :clobber, :compile, to: :commands
 end
 
 require 'packer/version'
+require 'packer/env'
 require 'packer/commands'
 require 'packer/compiler'
 require 'packer/configuration'
