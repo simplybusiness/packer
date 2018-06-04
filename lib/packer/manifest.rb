@@ -50,7 +50,8 @@ module Packer
           unless you are using the `webpack -w` or the webpack-dev-server.
         2. webpack has not yet re-run to reflect updates.
         3. You have misconfigured Packer's packer.yml file.
-        4. Your webpack configuration is not creating a manifest.
+        4. You have not installed dependencies `yarn install`.
+        5. Your webpack configuration is not creating a manifest.
         Your manifest contains:
         #{JSON.pretty_generate(@data)}
         MSG
