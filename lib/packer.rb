@@ -15,6 +15,22 @@ module Packer
     @instance ||= Packer::Instance.new
   end
 
+  def rails?
+    defined? ::Rails
+  end
+
+  def sinatra?
+    defined? ::Sinatra
+  end
+
+  def with_node_env(env)
+    original = ENV["NODE_ENV"]
+    ENV["NODE_ENV"] = env
+    yield
+  ensure
+    ENV["NODE_ENV"] = original
+  end
+
   delegate :logger, :logger=, :env, to: :instance
   delegate :compile, :compiler, :manifest, :commands, :config, :dev_server, to: :instance
   delegate :bootstrap, :clobber, :compile, to: :commands
@@ -29,4 +45,4 @@ require 'packer/instance'
 require 'packer/manifest'
 require 'packer/dev_server'
 
-require 'packer/railtie' if defined?(Rails)
+require 'packer/railtie' if defined?(::Rails)

@@ -6,6 +6,7 @@ default: &default
   public_path: public
   public_output_path: packs
   cache_path: tmp/cache/packer
+  mode: development
   compile: true
 
   # Reload manifest.json on all requests so we reload latest compiled packs
@@ -19,5 +20,6 @@ test:
 
 production:
   <<: *default
+  mode: production
   compile: false
   cache_manifest: true

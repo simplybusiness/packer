@@ -7,7 +7,7 @@ module Packer
     delegate :config, :env, to: :@packer
 
     # Configure dev server connection timeout (in seconds), default: 0.01
-    # Webpacker.dev_server.connect_timeout = 1
+    # Packer.dev_server.connect_timeout = 1
     cattr_accessor(:connect_timeout) { 0.01 }
 
     def initialize(packer)

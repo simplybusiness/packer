@@ -1,8 +1,9 @@
 # Requires the Gemfile
 require 'bundler' ; Bundler.require
+require 'packer/sinatra'
 
 class ExampleApp < Sinatra::Base
-  helpers Packer::Helper
+  register Packer::Sinatra
 
   get '/' do
     erb :index
