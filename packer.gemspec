@@ -5,9 +5,15 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'packer/version'
 
+gem_version = if ENV['GEM_PRE_RELEASE'].nil? || ENV['GEM_PRE_RELEASE'].empty?
+                Packer::VERSION
+              else
+                "#{Packer::VERSION}.#{ENV['GEM_PRE_RELEASE']}"
+              end
+
 Gem::Specification.new do |spec|
   spec.name          = 'packer'
-  spec.version       = Packer::VERSION
+  spec.version       = gem_version
   spec.authors       = ['Leslie Hoare']
   spec.email         = ['iam@lesleh.co.uk']
 
