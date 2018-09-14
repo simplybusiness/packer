@@ -49,17 +49,5 @@ module.exports = {
     new CompressionPlugin({
       test: /\.(js|css|svg)$/
     })
-  ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-        },
-      }
-    },
-    runtimeChunk: false
-  }
+  ]
 }
