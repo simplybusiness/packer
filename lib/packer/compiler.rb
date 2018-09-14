@@ -61,7 +61,7 @@ module Packer
 
       logger.info "ENV: #{webpack_env}"
 
-      sterr, stdout, status = Open3.capture3(webpack_env, 'yarn webpack')
+      sterr, stdout, status = Open3.capture3(webpack_env, 'npx webpack')
 
       if status.success?
         logger.info "Compiled all packs in #{config.public_output_path}"
@@ -76,7 +76,7 @@ module Packer
     def default_watched_paths
       [
         "#{config.source_path}/**/*",
-        'yarn.lock', 'package.json', 'webpack.config.js'
+        'package-lock.json', 'package.json', 'webpack.config.js'
       ].freeze
     end
 
