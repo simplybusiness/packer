@@ -4,7 +4,7 @@ const yaml = require('js-yaml')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 
-let environment = 'development'
+let environment = process.env.RACK_ENV || 'development'
 let configPath = process.env.PACKER_CONFIG_PATH || path.resolve('config', 'packer.yml')
 let config = yaml.safeLoad(fs.readFileSync(configPath))[environment]
 let dev = config.mode === 'development'
