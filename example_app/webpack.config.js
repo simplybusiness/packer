@@ -12,7 +12,7 @@ let dev = config.mode === 'development'
 module.exports = {
   context: path.join(__dirname, config.source_path),
   mode: dev ? 'development' : 'production',
-  devtool: dev ? 'cheap-eval-source-map' : 'source-map',
+  devtool: dev ? 'eval-source-map' : 'source-map',
   entry: {
     app: './packs/app.js'
   },
