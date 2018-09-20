@@ -45,7 +45,6 @@ module Packer
     end
 
     def remove_package_digest
-      logger.info 'Calling'
       package_digest_path.delete if package_digest_path.exist?
     rescue Errno::ENOENT, Errno::ENOTDIR
     end

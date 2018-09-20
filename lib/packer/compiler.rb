@@ -50,7 +50,6 @@ module Packer
     end
 
     def remove_compilation_digest
-      logger.info 'Calling'
       compilation_digest_path.delete if compilation_digest_path.exist?
     rescue Errno::ENOENT, Errno::ENOTDIR
     end
