@@ -45,7 +45,6 @@ module Packer
 
     def record_compilation_digest
       config.cache_path.mkpath
-      logger.info "#{watched_files_digest.inspect}"
       compilation_digest_path.write(watched_files_digest)
     end
 
