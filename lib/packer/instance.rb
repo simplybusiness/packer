@@ -21,6 +21,10 @@ module Packer
       @compiler ||= Packer::Compiler.new self
     end
 
+    def installer
+      @installer ||= Packer::Installer.new self
+    end
+
     def config
       @config ||= Packer::Configuration.new self
     end
