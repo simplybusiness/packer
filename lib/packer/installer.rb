@@ -12,13 +12,11 @@ module Packer
     end
 
     def install
-      if stale?
-        record_package_digest
-        run_npm_install.tap do |success|
-          remove_package_digest unless success
-        end
-      else
-        true
+      return true if fresh?
+
+      record_package_digest
+      run_npm_install.tap do |success|
+        remove_package_digest unless success
       end
     end
 
@@ -37,11 +35,7 @@ module Packer
     end
 
     def package_file_digest
-      contents = if package_lock_path.exist?
-                   package_lock_path.read
-                 else
-                   ''
-                 end
+      contents = package_lock_path.exist? ? package_lock_path.read : ''
       Digest::SHA1.hexdigest(contents)
     end
 
