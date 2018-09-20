@@ -58,7 +58,7 @@ module Packer
 
     def run_npm_install
       logger.info 'Installing latest NPM packages (this may take a while)…'
-      sterr, stdout, status = Open3.capture3({}, 'npm install')
+      sterr, stdout, status = Open3.capture3('npm install')
 
       if status.success?
         logger.info 'Successfully installed packages'
