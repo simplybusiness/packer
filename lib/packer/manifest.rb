@@ -6,7 +6,7 @@ module Packer
   class Manifest
     class MissingEntryError < StandardError; end
 
-    delegate :config, :compiler, :dev_server, to: :@packer
+    delegate :config, :installer, :compiler, :dev_server, to: :@packer
 
     def initialize(packer)
       @packer = packer
@@ -17,7 +17,10 @@ module Packer
     end
 
     def lookup(name)
-      compile if compiling?
+      if compiling?
+        install
+        compile
+      end
       find name
     end
 
@@ -29,6 +32,10 @@ module Packer
 
     def compiling?
       config.compile? && !dev_server.running?
+    end
+
+    def install
+      Packer.logger.tagged('Packer') { installer.install }
     end
 
     def compile

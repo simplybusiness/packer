@@ -42,6 +42,7 @@ require 'packer/compiler'
 require 'packer/configuration'
 require 'packer/helper'
 require 'packer/instance'
+require 'packer/installer'
 require 'packer/manifest'
 require 'packer/dev_server'
 

@@ -45,12 +45,10 @@ module Packer
 
     def record_compilation_digest
       config.cache_path.mkpath
-      logger.info "#{watched_files_digest.inspect}"
       compilation_digest_path.write(watched_files_digest)
     end
 
     def remove_compilation_digest
-      logger.info 'Calling'
       compilation_digest_path.delete if compilation_digest_path.exist?
     rescue Errno::ENOENT, Errno::ENOTDIR
     end
