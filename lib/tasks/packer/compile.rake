@@ -10,6 +10,7 @@ end
 
 def enhance_assets_precompile
   Rake::Task["assets:precompile"].enhance do
+    Rake::Task["packer:install"].invoke
     Rake::Task["packer:compile"].invoke
   end
 end
@@ -30,5 +31,5 @@ if Rake::Task.task_defined?("assets:precompile")
   skip_webpacker_precompile = %w(no false n f).include?(ENV["PACKER_PRECOMPILE"])
   enhance_assets_precompile unless skip_webpacker_precompile
 else
-  Rake::Task.define_task("assets:precompile" => ["packer:compile"])
+  Rake::Task.define_task("assets:precompile" => ["packer:install", "packer:compile"])
 end

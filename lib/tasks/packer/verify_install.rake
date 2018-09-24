@@ -7,7 +7,7 @@ namespace :packer do
       $stdout.puts "Packer is installed 🎉 🍰 🎉"
       $stdout.puts "Using #{Packer.config.config_path} file for setting up webpack paths"
     else
-      $stderr.puts "Configuration config/packer.yml file not found. \n"\
+      $stderr.puts "Configuration #{Packer.config.config_path} file not found. \n"\
            "Make sure packer:install is run successfully before " \
            "running dependent tasks"
       exit!
