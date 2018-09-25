@@ -9,6 +9,7 @@ module Packer
     def self.registered(app)
       Packer.instance = Packer::Instance.new(
         root_path: app.settings.root,
+        config_path: app.settings.respond_to?(:packer_config_path) ? app.settings.packer_config_path : nil,
         environment: app.settings.environment
       )
       app.helpers Packer::Helper
