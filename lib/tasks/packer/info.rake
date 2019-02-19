@@ -7,6 +7,6 @@ namespace :packer do
     $stdout.puts "Rails: #{Rails.version}"
     $stdout.puts "Packer: #{Packer::VERSION}"
     $stdout.puts "Node: #{`node --version`}"
-    $stdout.puts "Npm: #{`npm --version`}"
+    $stdout.puts "Yarn: #{`yarn --version`}"
   end
 end

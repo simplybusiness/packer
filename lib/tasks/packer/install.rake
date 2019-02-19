@@ -1,7 +1,7 @@
 namespace :packer do
-  desc 'Install NPM packages required for Packer asset compilation'
+  desc 'Install Yarn packages required for Packer asset compilation'
   task :install do
-    $stdout.puts 'Installing NPM packages…'
-    system('npm install --production --quiet --no-progress')
+    $stdout.puts 'Installing Yarn packages…'
+    system('yarn install --no-progress --non-interactive')
   end
 end

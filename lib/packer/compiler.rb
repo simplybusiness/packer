@@ -59,7 +59,7 @@ module Packer
 
       logger.info "ENV: #{webpack_env}"
 
-      sterr, stdout, status = Open3.capture3(webpack_env, 'npx webpack')
+      sterr, stdout, status = Open3.capture3(webpack_env, 'yarn run webpack')
 
       if status.success?
         logger.info "Compiled all packs in #{config.public_output_path}"
