@@ -5,9 +5,15 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'packer/version'
 
+gem_version = if ENV['GEM_PRE_RELEASE'].nil? || ENV['GEM_PRE_RELEASE'].empty?
+                Packer::VERSION
+              else
+                "#{Packer::VERSION}.#{ENV['GEM_PRE_RELEASE']}"
+              end
+
 Gem::Specification.new do |spec|
   spec.name          = 'packer'
-  spec.version       = Packer::VERSION
+  spec.version       = gem_version
   spec.authors       = ['Leslie Hoare']
   spec.email         = ['iam@lesleh.co.uk']
 
@@ -17,7 +23,7 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = 'http://gemstash.simplybusiness.io'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
       'public gem pushes.'
