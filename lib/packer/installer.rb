@@ -15,7 +15,7 @@ module Packer
       return true if fresh?
 
       record_package_digest
-      run_npm_install.tap do |success|
+      run_yarn_install.tap do |success|
         remove_package_digest unless success
       end
     end
@@ -49,9 +49,9 @@ module Packer
     rescue Errno::ENOENT, Errno::ENOTDIR
     end
 
-    def run_npm_install
-      logger.info 'Installing latest NPM packages (this may take a while)…'
-      sterr, stdout, status = Open3.capture3('npm install')
+    def run_yarn_install
+      logger.info 'Installing latest Yarn packages (this may take a while)…'
+      sterr, stdout, status = Open3.capture3('yarn install')
 
       if status.success?
         logger.info 'Successfully installed packages'
@@ -61,7 +61,7 @@ module Packer
     end
 
     def package_lock_path
-      Pathname('package-lock.json')
+      Pathname('yarn.lock')
     end
 
     def package_digest_path
