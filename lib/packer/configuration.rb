@@ -56,10 +56,14 @@ module Packer
       root_path.join(fetch(:cache_path))
     end
 
+    def dev_server_host
+      fetch(:dev_server_host)
+    end
+
     private
 
-    def fetch(key)
-      data.fetch(key)
+    def fetch(key, default = nil)
+      data.fetch(key, default)
     end
 
     def data

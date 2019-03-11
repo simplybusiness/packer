@@ -23,7 +23,7 @@ module Packer
     end
 
     def host
-      'localhost'
+      config.dev_server_host || 'localhost'
     end
 
     def port
