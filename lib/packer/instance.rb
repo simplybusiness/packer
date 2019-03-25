@@ -14,6 +14,7 @@ module Packer
       @root_path = determine_root_path(root_path)
       @config_path = config_path || Pathname.new(File.join(@root_path, 'config/packer.yml'))
       raise ArgumentError, "Missing packer configuration file #{@config_path}" unless File.exist?(@config_path)
+
       @env = determine_environment(environment)
     end
 
@@ -53,6 +54,7 @@ module Packer
       unless available_environments.include?(env.to_s)
         raise ArgumentError, "#{env} env is not defined in #{@config_path}"
       end
+
       env
     end
 
@@ -63,6 +65,7 @@ module Packer
                     ::Rails.root
                   end
       raise ArgumentError, 'root_path is not set' if root_path.nil?
+
       root_path
     end
 

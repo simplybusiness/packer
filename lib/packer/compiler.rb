@@ -50,13 +50,11 @@ module Packer
 
     def remove_compilation_digest
       compilation_digest_path.delete if compilation_digest_path.exist?
-    rescue Errno::ENOENT, Errno::ENOTDIR
     end
 
     # rubocop:disable Metrics/AbcSize
     def run_webpack
       logger.info 'Compiling…'
-
       logger.info "ENV: #{webpack_env}"
 
       sterr, stdout, status = Open3.capture3(webpack_env, 'yarn run webpack')

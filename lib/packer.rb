@@ -24,11 +24,11 @@ module Packer
   end
 
   def with_node_env(env)
-    original = ENV["NODE_ENV"]
-    ENV["NODE_ENV"] = env
+    original = ENV['NODE_ENV']
+    ENV['NODE_ENV'] = env
     yield
   ensure
-    ENV["NODE_ENV"] = original
+    ENV['NODE_ENV'] = original
   end
 
   delegate :logger, :logger=, :env, to: :instance

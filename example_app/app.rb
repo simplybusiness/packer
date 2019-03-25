@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 # Requires the Gemfile
-require 'bundler' ; Bundler.require
+require 'bundler'
+Bundler.require
 require 'packer/sinatra'
 
 class ExampleApp < Sinatra::Base

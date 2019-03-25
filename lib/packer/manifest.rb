@@ -6,7 +6,7 @@ module Packer
   class Manifest
     class MissingEntryError < StandardError; end
 
-    delegate :config, :installer, :compiler, :dev_server, to: :@packer
+    delegate :logger, :config, :installer, :compiler, :dev_server, to: :@packer
 
     def initialize(packer)
       @packer = packer
@@ -61,7 +61,7 @@ module Packer
         5. Your webpack configuration is not creating a manifest.
         Your manifest contains:
         #{JSON.pretty_generate(@data)}
-        MSG
+      MSG
     end
 
     def data
@@ -76,6 +76,11 @@ module Packer
       if config.public_manifest_path.exist?
         JSON.parse config.public_manifest_path.read
       else
+        logger.error <<~MSG
+          Failed to load manifest.
+          Path: config.public_manifest_path
+          Contents: #{IO.read(config.public_manifest_path)}
+        MSG
         {}
       end
     end
