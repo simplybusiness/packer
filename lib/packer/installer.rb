@@ -46,7 +46,6 @@ module Packer
 
     def remove_package_digest
       package_digest_path.delete if package_digest_path.exist?
-    rescue Errno::ENOENT, Errno::ENOTDIR
     end
 
     def run_yarn_install

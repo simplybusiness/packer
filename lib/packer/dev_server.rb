@@ -16,6 +16,7 @@ module Packer
 
     def running?
       return false unless env == 'development'
+
       Socket.tcp(host, port, connect_timeout: connect_timeout).close
       true
     rescue StandardError

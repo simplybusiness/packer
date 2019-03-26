@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Packer
   class Commands
     delegate :config, :compiler, :manifest, to: :@packer

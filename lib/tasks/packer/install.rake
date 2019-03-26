@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :packer do
   desc 'Install Yarn packages required for Packer asset compilation'
   task :install do

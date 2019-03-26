@@ -13,7 +13,7 @@ module Packer
       tags = sources_from_pack_manifest(names).map do |name|
         "<script src=\"#{name}\"></script>"
       end.join("\n")
-      
+
       tags.respond_to?(:html_safe) ? tags.html_safe : tags
     end
 
@@ -21,7 +21,7 @@ module Packer
       tags = sources_from_pack_manifest(names).map do |name|
         "<link rel=\"stylesheet\" href=\"#{name}\">"
       end.join("\n")
-      
+
       tags.respond_to?(:html_safe) ? tags.html_safe : tags
     end
 

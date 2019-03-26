@@ -1,4 +1,6 @@
-require "packer/version"
+# frozen_string_literal: true
+
+require 'packer/version'
 
 namespace :packer do
   desc "Provide information on Packer's environment"

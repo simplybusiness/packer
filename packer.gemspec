@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 lib = File.expand_path('../lib', __FILE__)
@@ -40,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rack-proxy', '~> 0.6.4'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'pry', '~> 0.12'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rubocop'
 end
