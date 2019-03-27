@@ -50,6 +50,7 @@ module Packer
 
     def remove_compilation_digest
       compilation_digest_path.delete if compilation_digest_path.exist?
+    rescue Errno::ENOENT, Errno::ENOTDIR
     end
 
     # rubocop:disable Metrics/AbcSize

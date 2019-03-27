@@ -13,7 +13,9 @@ module Packer
     end
 
     def refresh
-      @data = load
+      Packer.logger.tagged('Packer') {
+        @data = load
+      }
     end
 
     def lookup(name)
@@ -74,13 +76,10 @@ module Packer
 
     def load
       if config.public_manifest_path.exist?
+        logger.debug "Loading manifest file: #{config.public_manifest_path}"
+        logger.debug "Manifest contents: #{IO.read(config.public_manifest_path)}"
         JSON.parse config.public_manifest_path.read
       else
-        logger.error <<~MSG
-          Failed to load manifest.
-          Path: config.public_manifest_path
-          Contents: #{IO.read(config.public_manifest_path)}
-        MSG
         {}
       end
     end
