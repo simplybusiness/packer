@@ -13,11 +13,14 @@ module Packer
 
     def compile
       if stale?
+        puts 'running webpack'
         record_compilation_digest
         run_webpack.tap do |success|
+          puts 'webpack failed; removing digest'
           remove_compilation_digest unless success
         end
       else
+        puts 'no need to re-run webpack as files have not changed'
         true
       end
     end
@@ -55,15 +58,15 @@ module Packer
 
     # rubocop:disable Metrics/AbcSize
     def run_webpack
-      logger.info 'Compiling…'
-      logger.info "ENV: #{webpack_env}"
+      puts 'Compiling…'
+      puts "ENV: #{webpack_env}"
 
       sterr, stdout, status = Open3.capture3(webpack_env, 'yarn run webpack')
 
       if status.success?
-        logger.info "Compiled all packs in #{config.public_output_path}"
+        puts "Compiled all packs in #{config.public_output_path}"
       else
-        logger.error "Compilation failed:\n#{sterr}\n#{stdout}"
+        puts "Compilation failed:\n#{sterr}\n#{stdout}"
       end
 
       status.success?
