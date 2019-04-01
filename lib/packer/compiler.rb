@@ -16,7 +16,7 @@ module Packer
         puts 'running webpack'
         record_compilation_digest
         run_webpack.tap do |success|
-          puts 'webpack failed; removing digest'
+          puts "webpack succeeded? #{success}"
           remove_compilation_digest unless success
         end
       else
