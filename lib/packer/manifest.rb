@@ -76,9 +76,10 @@ module Packer
 
     def load
       if config.public_manifest_path.exist?
-        logger.info "Loading manifest file kuku: #{config.public_manifest_path}"
-        logger.info "Manifest contents: #{IO.read(config.public_manifest_path)}"
-        JSON.parse config.public_manifest_path.read
+
+        contents = config.public_manifest_path.read
+        puts "[Packer] Error! file #{config.public_manifest_path} is empty: #{contents}" if contents.length == 0
+        JSON.parse contents
       else
         {}
       end
