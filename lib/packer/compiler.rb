@@ -64,7 +64,7 @@ module Packer
       sterr, stdout, status = Open3.capture3(webpack_env, 'yarn run webpack')
 
       if status.success?
-        puts "Compiled all packs in #{config.public_output_path}"
+        puts "Compiled all packs in #{config.public_output_path}. output was: #{stdout}"
       else
         puts "Compilation failed:\n#{sterr}\n#{stdout}"
       end
