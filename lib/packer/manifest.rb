@@ -13,9 +13,7 @@ module Packer
     end
 
     def refresh
-      Packer.logger.tagged('Packer') {
-        @data = load
-      }
+      @data = load
     end
 
     def lookup(name)
