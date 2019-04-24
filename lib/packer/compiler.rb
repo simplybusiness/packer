@@ -39,7 +39,7 @@ module Packer
     end
 
     def watched_files_digest
-      files = Dir[*default_watched_paths].reject { |f| File.directory?(f) }
+      files = Dir[*watched_paths].reject { |f| File.directory?(f) }
       Digest::SHA1.hexdigest(files.map { |f| "#{File.basename(f)}/#{File.mtime(f).utc.to_i}" }.join('/'))
     end
 
@@ -69,6 +69,10 @@ module Packer
       status.success?
     end
     # rubocop:enable Metrics/AbcSize
+
+    def watched_paths
+      default_watched_paths + config.watched_paths
+    end
 
     def default_watched_paths
       [

@@ -36,6 +36,12 @@ module Packer
       source_path.join(fetch(:source_entry_path))
     end
 
+    def watched_paths
+      fetch(:watched_paths, []).map do |path|
+        "#{path}/**/*"
+      end
+    end
+
     def public_path
       root_path.join(fetch(:public_path))
     end
@@ -58,8 +64,8 @@ module Packer
 
     private
 
-    def fetch(key)
-      data.fetch(key)
+    def fetch(key, default = nil)
+      default.nil? ? data.fetch(key) : data.fetch(key, default)
     end
 
     def data
