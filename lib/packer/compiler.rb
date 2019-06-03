@@ -12,6 +12,8 @@ module Packer
     end
 
     def compile
+      return true if no_compile?
+
       if stale?
         record_compilation_digest
         run_webpack.tap do |success|
@@ -20,6 +22,10 @@ module Packer
       else
         true
       end
+    end
+
+    def no_compile?
+      ENV['PACKER_NO_COMPILE'].present?
     end
 
     # Returns true if all the compiled packs are up to date with the underlying asset files.
