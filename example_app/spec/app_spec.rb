@@ -5,7 +5,8 @@ require './spec/spec_helper.rb'
 
 describe "Example Application" do
   before(:all) {
-    FileUtils.rm_r File.expand_path('../public/packs', File.dirname(__FILE__))
+    packs_path = File.expand_path('../public/packs', File.dirname(__FILE__))
+    FileUtils.rm_r(packs_path) if File.exists?(packs_path)
   }
 
   it "should allow accessing the home page" do
