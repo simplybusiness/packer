@@ -4,6 +4,6 @@ namespace :packer do
   desc 'Install Yarn packages required for Packer asset compilation'
   task :install do
     $stdout.puts 'Installing Yarn packages…'
-    system('yarn install --no-progress --non-interactive')
+    system('yarn install --frozen-lockfile --no-progress --non-interactive')
   end
 end
